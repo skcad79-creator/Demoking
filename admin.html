@@ -1,0 +1,1308 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Dear King Admin</title>
+
+  <style>
+    * {
+      box-sizing: border-box;
+    }
+
+    body {
+      margin: 0;
+      font-family: Arial, sans-serif;
+      background: #eef2ff;
+      min-height: 100vh;
+    }
+
+    .box {
+      width: 92%;
+      max-width: 400px;
+      margin: 30px auto;
+      background: white;
+      padding: 25px 20px;
+      border-radius: 20px;
+      box-shadow: 0 8px 30px rgba(0,0,0,0.12);
+    }
+
+    .logo {
+      width: 100px;
+      height: 100px;
+      margin: 0 auto 18px;
+      background: linear-gradient(145deg, #2563eb, #111827);
+      border: 4px solid #facc15;
+      border-radius: 25px;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .logo span {
+      font-size: 28px;
+    }
+
+    .logo b {
+      font-size: 34px;
+      color: #facc15;
+      letter-spacing: 2px;
+    }
+
+    h1 {
+      text-align: center;
+      margin: 0 0 5px;
+    }
+
+    .subtitle {
+      text-align: center;
+      color: #64748b;
+      font-size: 13px;
+      margin-bottom: 25px;
+    }
+
+    label {
+      display: block;
+      font-size: 14px;
+      font-weight: bold;
+      margin: 13px 0 7px;
+    }
+
+    input, select {
+      width: 100%;
+      padding: 13px;
+      border: 1px solid #d1d5db;
+      border-radius: 10px;
+      font-size: 16px;
+      text-align: center;
+    }
+
+    .main-btn {
+      width: 100%;
+      padding: 14px;
+      margin-top: 18px;
+      border: none;
+      border-radius: 10px;
+      background: #2563eb;
+      color: white;
+      font-size: 16px;
+      font-weight: bold;
+    }
+
+    .green-btn {
+      background: #16a34a;
+      color: white;
+      border: none;
+      padding: 10px 14px;
+      border-radius: 8px;
+      font-weight: bold;
+      margin-top: 8px;
+      width: 100%;
+    }
+
+    .red-btn {
+      background: #dc2626;
+      color: white;
+      border: none;
+      padding: 10px 14px;
+      border-radius: 8px;
+      font-weight: bold;
+      margin-top: 8px;
+      width: 100%;
+    }
+
+    .result-btn {
+      background: #7c3aed;
+      color: white;
+      border: none;
+      padding: 13px;
+      border-radius: 10px;
+      font-weight: bold;
+      width: 100%;
+      margin-top: 10px;
+    }
+
+    .message {
+      text-align: center;
+      margin-top: 13px;
+      font-weight: bold;
+      font-size: 14px;
+    }
+
+    .dashboard {
+      width: 94%;
+      max-width: 650px;
+      margin: 20px auto;
+    }
+
+    .topbar {
+      background: #111827;
+      color: white;
+      padding: 18px;
+      border-radius: 17px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 15px;
+    }
+
+    .title {
+      font-size: 20px;
+      font-weight: bold;
+    }
+
+    .logout {
+      background: #ef4444;
+      border: none;
+      color: white;
+      padding: 9px 12px;
+      border-radius: 8px;
+      font-weight: bold;
+    }
+
+    .card {
+      background: white;
+      padding: 20px;
+      border-radius: 17px;
+      margin-bottom: 15px;
+      box-shadow: 0 5px 20px rgba(0,0,0,0.08);
+    }
+
+    .card h3 {
+      margin-top: 0;
+    }
+
+    .stat {
+      background: #eff6ff;
+      padding: 15px;
+      border-radius: 12px;
+      margin-bottom: 10px;
+      font-weight: bold;
+    }
+
+    .user-result {
+      background: #eff6ff;
+      padding: 16px;
+      border-radius: 12px;
+      margin-top: 15px;
+      line-height: 1.8;
+      border: 1px solid #bfdbfe;
+    }
+
+    .coin-box {
+      background: #fef3c7;
+      padding: 15px;
+      border-radius: 12px;
+      margin-top: 12px;
+    }
+
+    .winner {
+      background: #fef3c7;
+      padding: 15px;
+      border-radius: 12px;
+      line-height: 1.7;
+    }
+
+    .prediction {
+      background: #f8fafc;
+      padding: 15px;
+      border-radius: 12px;
+      margin-bottom: 12px;
+      border: 1px solid #e5e7eb;
+    }
+
+    .winner-prediction {
+      background: #dcfce7;
+      border: 2px solid #22c55e;
+    }
+
+    .result-box {
+      background: #f5f3ff;
+      padding: 15px;
+      border-radius: 12px;
+      margin-top: 10px;
+    }
+
+    .hidden {
+      display: none;
+    }
+
+    .demo {
+      text-align: center;
+      color: #64748b;
+      font-size: 12px;
+      margin-top: 20px;
+    }
+
+    .small {
+      font-size: 13px;
+      color: #64748b;
+      margin-top: 6px;
+    }
+
+    .success {
+      color: #16a34a;
+      font-weight: bold;
+    }
+  </style>
+</head>
+
+<body>
+
+<!-- ADMIN LOGIN -->
+
+<div class="box" id="adminLogin">
+
+  <div class="logo">
+    <span>👑</span>
+    <b>DK</b>
+  </div>
+
+  <h1>Dear King</h1>
+
+  <div class="subtitle">
+    Admin Panel
+  </div>
+
+  <label>Admin Username</label>
+
+  <input
+    type="text"
+    id="adminUser"
+    placeholder="Enter admin username"
+  >
+
+  <label>Admin Password</label>
+
+  <input
+    type="password"
+    id="adminPass"
+    placeholder="Enter admin password"
+  >
+
+  <button class="main-btn" onclick="adminLogin()">
+    Admin Login
+  </button>
+
+  <div id="adminMessage" class="message"></div>
+
+  <div class="demo">
+    Demo Admin • Virtual Coins Only
+  </div>
+
+</div>
+
+
+<!-- ADMIN DASHBOARD -->
+
+<div class="dashboard hidden" id="adminDashboard">
+
+  <div class="topbar">
+
+    <div class="title">
+      👑 Dear King Admin
+    </div>
+
+    <button class="logout" onclick="adminLogout()">
+      Logout
+    </button>
+
+  </div>
+
+
+  <!-- DASHBOARD -->
+
+  <div class="card">
+
+    <h3>📊 Dashboard</h3>
+
+    <div class="stat">
+      👤 Registered User:
+      <span id="userCount">0</span>
+    </div>
+
+    <div class="stat">
+      🎯 Total Predictions:
+      <span id="predictionCount">0</span>
+    </div>
+
+    <div class="stat">
+      🪙 Current Virtual Coins:
+      <span id="currentCoins">0</span>
+    </div>
+
+  </div>
+
+
+  <!-- USER COIN MANAGEMENT -->
+
+  <div class="card">
+
+    <h3>🔎 User Coin Management</h3>
+
+    <label>Search Username</label>
+
+    <input
+      type="text"
+      id="searchUsername"
+      placeholder="Enter username"
+    >
+
+    <button
+      class="main-btn"
+      onclick="searchUser()"
+    >
+      🔍 Search User
+    </button>
+
+    <div id="searchMessage" class="message"></div>
+
+    <div id="userSearchResult"></div>
+
+  </div>
+
+
+  <!-- USER INFORMATION -->
+
+  <div class="card">
+
+    <h3>👤 User Information</h3>
+
+    <div id="userInfo">
+      No user registered yet.
+    </div>
+
+  </div>
+
+
+  <!-- SET RESULT -->
+
+  <div class="card">
+
+    <h3>🎯 Set Round Result</h3>
+
+    <label>Select Round</label>
+
+    <select id="resultRound">
+
+      <option value="1 PM">1 PM</option>
+      <option value="8 PM">8 PM</option>
+
+    </select>
+
+
+    <label>Winning Number</label>
+
+    <input
+      type="text"
+      id="winningNumber"
+      placeholder="01 - 99"
+      maxlength="2"
+      inputmode="numeric"
+    >
+
+    <button
+      class="result-btn"
+      onclick="setResult()"
+    >
+      🎯 Set Result & Find Winner
+    </button>
+
+    <div
+      id="resultMessage"
+      class="message"
+    ></div>
+
+  </div>
+
+
+  <!-- PREDICTIONS -->
+
+  <div class="card">
+
+    <h3>🎯 Predictions</h3>
+
+    <div id="predictionInfo">
+      No predictions yet.
+    </div>
+
+  </div>
+
+
+  <!-- WINNER -->
+
+  <div class="card">
+
+    <h3>🏆 Recent Winner</h3>
+
+    <div class="winner" id="winnerInfo">
+      No winner published yet.
+    </div>
+
+  </div>
+
+
+  <div class="demo">
+    Free-to-play demo • Virtual points only
+  </div>
+
+</div>
+
+
+<script>
+
+  /* DEMO ADMIN LOGIN */
+
+  const ADMIN_USERNAME = "admin";
+  const ADMIN_PASSWORD = "1234";
+
+
+  function adminLogin() {
+
+    let username =
+      document.getElementById("adminUser").value.trim();
+
+    let password =
+      document.getElementById("adminPass").value;
+
+    let message =
+      document.getElementById("adminMessage");
+
+
+    if (
+      username === ADMIN_USERNAME &&
+      password === ADMIN_PASSWORD
+    ) {
+
+      document.getElementById("adminLogin")
+        .classList.add("hidden");
+
+      document.getElementById("adminDashboard")
+        .classList.remove("hidden");
+
+      loadAdminData();
+
+    }
+
+    else {
+
+      message.innerText =
+        "Invalid admin username or password.";
+
+      message.style.color = "red";
+
+    }
+
+  }
+
+
+  /* GET DATA */
+
+  function getHistory() {
+
+    return JSON.parse(
+      localStorage.getItem("predictionHistory") || "[]"
+    );
+
+  }
+
+
+  /* LOAD ADMIN DATA */
+
+  function loadAdminData() {
+
+    let username =
+      localStorage.getItem("demoUsername");
+
+    let points =
+      localStorage.getItem("demoPoints") || "0";
+
+    let history =
+      getHistory();
+
+
+    document.getElementById("userCount")
+      .innerText = username ? "1" : "0";
+
+
+    document.getElementById("predictionCount")
+      .innerText = history.length;
+
+
+    document.getElementById("currentCoins")
+      .innerText = points;
+
+
+    if (username) {
+
+      document.getElementById("userInfo").innerHTML =
+        "👤 <b>Username:</b> " + escapeHTML(username) +
+        "<br>🪙 <b>Virtual Coins:</b> " + points;
+
+    }
+
+    else {
+
+      document.getElementById("userInfo").innerText =
+        "No user registered yet.";
+
+    }
+
+
+    showPredictions();
+    showRecentWinner();
+
+  }
+
+
+  /* SAFE TEXT */
+
+  function escapeHTML(text) {
+
+    return String(text)
+      .replace(/&/g, "&amp;")
+      .replace(/</g, "&lt;")
+      .replace(/>/g, "&gt;")
+      .replace(/"/g, "&quot;")
+      .replace(/'/g, "&#039;");
+
+  }
+
+
+  /* SEARCH USER */
+
+  function searchUser() {
+
+    let search =
+      document.getElementById("searchUsername")
+      .value.trim();
+
+    let message =
+      document.getElementById("searchMessage");
+
+    let result =
+      document.getElementById("userSearchResult");
+
+    let username =
+      localStorage.getItem("demoUsername");
+
+    if (!search) {
+
+      message.innerText =
+        "Please enter a username.";
+
+      message.style.color = "red";
+
+      result.innerHTML = "";
+
+      return;
+
+    }
+
+
+    if (!username) {
+
+      message.innerText =
+        "No user registered.";
+
+      message.style.color = "red";
+
+      result.innerHTML = "";
+
+      return;
+
+    }
+
+
+    if (
+      username.toLowerCase() !==
+      search.toLowerCase()
+    ) {
+
+      message.innerText =
+        "User not found.";
+
+      message.style.color = "red";
+
+      result.innerHTML = "";
+
+      return;
+
+    }
+
+
+    message.innerText =
+      "✅ User found.";
+
+    message.style.color = "#16a34a";
+
+
+    showUserCoinManager(username);
+
+  }
+
+
+  /* SHOW USER COIN MANAGER */
+
+  function showUserCoinManager(username) {
+
+    let points =
+      parseInt(
+        localStorage.getItem("demoPoints") || "0"
+      );
+
+
+    let result =
+      document.getElementById("userSearchResult");
+
+
+    result.innerHTML =
+
+      '<div class="user-result">' +
+
+      '👤 <b>Username:</b> ' +
+      escapeHTML(username) +
+
+      '<br>🪙 <b>Current Coins:</b> ' +
+      '<span id="searchedUserCoins">' +
+      points +
+      '</span>' +
+
+      '<div class="coin-box">' +
+
+      '<label>Coin Amount</label>' +
+
+      '<input ' +
+      'type="number" ' +
+      'id="coinAmount" ' +
+      'placeholder="Enter coin amount" ' +
+      'min="1">' +
+
+      '<button ' +
+      'class="green-btn" ' +
+      'onclick="addUserCoins()">' +
+
+      '➕ Add Virtual Coins' +
+
+      '</button>' +
+
+      '<button ' +
+      'class="red-btn" ' +
+      'onclick="removeUserCoins()">' +
+
+      '➖ Remove Virtual Coins' +
+
+      '</button>' +
+
+      '</div>' +
+
+      '</div>';
+
+  }
+
+
+  /* GET COIN AMOUNT */
+
+  function getCoinAmount() {
+
+    let input =
+      document.getElementById("coinAmount");
+
+    if (!input) {
+
+      alert("Please search a user first.");
+
+      return null;
+
+    }
+
+
+    let amount =
+      parseInt(input.value);
+
+
+    if (
+      isNaN(amount) ||
+      amount <= 0
+    ) {
+
+      alert(
+        "Please enter a valid positive coin amount."
+      );
+
+      return null;
+
+    }
+
+
+    return amount;
+
+  }
+
+
+  /* ADD USER COINS */
+
+  function addUserCoins() {
+
+    let amount =
+      getCoinAmount();
+
+    if (amount === null) return;
+
+
+    let current =
+      parseInt(
+        localStorage.getItem("demoPoints") || "0"
+      );
+
+
+    let newBalance =
+      current + amount;
+
+
+    localStorage.setItem(
+      "demoPoints",
+      newBalance
+    );
+
+
+    saveCoinChange(
+      "Added",
+      amount,
+      current,
+      newBalance
+    );
+
+
+    alert(
+      "✅ " + amount +
+      " Virtual Coins added successfully."
+    );
+
+
+    document.getElementById("coinAmount")
+      .value = "";
+
+
+    loadAdminData();
+
+
+    let username =
+      localStorage.getItem("demoUsername");
+
+    showUserCoinManager(username);
+
+  }
+
+
+  /* REMOVE USER COINS */
+
+  function removeUserCoins() {
+
+    let amount =
+      getCoinAmount();
+
+    if (amount === null) return;
+
+
+    let current =
+      parseInt(
+        localStorage.getItem("demoPoints") || "0"
+      );
+
+
+    if (amount > current) {
+
+      alert(
+        "❌ User does not have enough Virtual Coins."
+      );
+
+      return;
+
+    }
+
+
+    let newBalance =
+      current - amount;
+
+
+    localStorage.setItem(
+      "demoPoints",
+      newBalance
+    );
+
+
+    saveCoinChange(
+      "Removed",
+      amount,
+      current,
+      newBalance
+    );
+
+
+    alert(
+      "✅ " + amount +
+      " Virtual Coins removed successfully."
+    );
+
+
+    document.getElementById("coinAmount")
+      .value = "";
+
+
+    loadAdminData();
+
+
+    let username =
+      localStorage.getItem("demoUsername");
+
+    showUserCoinManager(username);
+
+  }
+
+
+  /* SAVE COIN CHANGE HISTORY */
+
+  function saveCoinChange(
+    action,
+    amount,
+    oldBalance,
+    newBalance
+  ) {
+
+    let username =
+      localStorage.getItem("demoUsername") ||
+      "Unknown User";
+
+
+    let history =
+      JSON.parse(
+        localStorage.getItem("coinChangeHistory") ||
+        "[]"
+      );
+
+
+    history.push({
+
+      username: username,
+
+      action: action,
+
+      amount: amount,
+
+      oldBalance: oldBalance,
+
+      newBalance: newBalance,
+
+      time: new Date().toLocaleString()
+
+    });
+
+
+    localStorage.setItem(
+      "coinChangeHistory",
+      JSON.stringify(history)
+    );
+
+  }
+
+
+  /* SHOW PREDICTIONS */
+
+  function showPredictions() {
+
+    let username =
+      localStorage.getItem("demoUsername");
+
+    let history =
+      getHistory();
+
+    let predictionBox =
+      document.getElementById("predictionInfo");
+
+
+    if (history.length === 0) {
+
+      predictionBox.innerText =
+        "No predictions yet.";
+
+      return;
+
+    }
+
+
+    predictionBox.innerHTML = "";
+
+
+    history.slice().reverse().forEach(function(item, reverseIndex) {
+
+      let originalIndex =
+        history.length - 1 - reverseIndex;
+
+      let div =
+        document.createElement("div");
+
+      div.className = "prediction";
+
+
+      if (item.status === "Winner") {
+
+        div.className =
+          "prediction winner-prediction";
+
+      }
+
+
+      let buttonHTML = "";
+
+
+      if (
+        item.status === "Winner" &&
+        !item.rewardAdded
+      ) {
+
+        buttonHTML =
+
+          '<label>Reward Virtual Coins</label>' +
+
+          '<input type="number" ' +
+          'id="reward_' + originalIndex + '" ' +
+          'placeholder="Example: 50" ' +
+          'min="1">' +
+
+          '<button class="green-btn" ' +
+          'onclick="addReward(' + originalIndex + ')">' +
+          '🪙 Add Virtual Coins' +
+          '</button>';
+
+      }
+
+
+      if (item.rewardAdded) {
+
+        buttonHTML =
+          '<div class="success">' +
+          '✅ Reward Added: +' +
+          item.reward +
+          ' Virtual Coins' +
+          '</div>';
+
+      }
+
+
+      div.innerHTML =
+
+        "👤 <b>" +
+        escapeHTML(username || "Unknown User") +
+        "</b>" +
+
+        "<br>🎯 <b>Round:</b> " +
+        escapeHTML(item.round) +
+
+        "<br>🔢 <b>Number:</b> " +
+        escapeHTML(item.number) +
+
+        "<br>🪙 <b>Coins Spent:</b> " +
+        item.coinSpent +
+
+        "<br>📌 <b>Status:</b> " +
+        escapeHTML(item.status) +
+
+        "<br>🕐 <b>Time:</b> " +
+        escapeHTML(item.time) +
+
+        buttonHTML;
+
+
+      predictionBox.appendChild(div);
+
+    });
+
+  }
+
+
+  /* SET RESULT */
+
+  function setResult() {
+
+    let round =
+      document.getElementById("resultRound").value;
+
+    let winningNumber =
+      document.getElementById("winningNumber")
+      .value.trim();
+
+
+    let message =
+      document.getElementById("resultMessage");
+
+
+    if (!/^\d{2}$/.test(winningNumber)) {
+
+      message.innerText =
+        "Please enter a 2-digit number.";
+
+      message.style.color = "red";
+
+      return;
+
+    }
+
+
+    let number =
+      parseInt(winningNumber);
+
+
+    if (number < 1 || number > 99) {
+
+      message.innerText =
+        "Number must be between 01 and 99.";
+
+      message.style.color = "red";
+
+      return;
+
+    }
+
+
+    let history =
+      getHistory();
+
+
+    let foundWinner = false;
+
+
+    history.forEach(function(item) {
+
+      if (
+        item.round === round &&
+        parseInt(item.number) === number
+      ) {
+
+        item.status = "Winner";
+
+        foundWinner = true;
+
+      }
+
+    });
+
+
+    localStorage.setItem(
+      "predictionHistory",
+      JSON.stringify(history)
+    );
+
+
+    if (foundWinner) {
+
+      message.innerText =
+        "✅ Matching prediction found! Winner marked.";
+
+      message.style.color = "#16a34a";
+
+    }
+
+    else {
+
+      message.innerText =
+        "No prediction matched this number.";
+
+      message.style.color = "#dc2626";
+
+    }
+
+
+    showPredictions();
+
+  }
+
+
+  /* ADD WINNER REWARD */
+
+  function addReward(index) {
+
+    let rewardInput =
+      document.getElementById(
+        "reward_" + index
+      );
+
+
+    let reward =
+      parseInt(rewardInput.value);
+
+
+    if (
+      isNaN(reward) ||
+      reward <= 0
+    ) {
+
+      alert(
+        "Please enter a valid Virtual Coin amount."
+      );
+
+      return;
+
+    }
+
+
+    let history =
+      getHistory();
+
+
+    let prediction =
+      history[index];
+
+
+    if (!prediction) {
+
+      alert("Prediction not found.");
+
+      return;
+
+    }
+
+
+    if (prediction.rewardAdded) {
+
+      alert("Reward already added.");
+
+      return;
+
+    }
+
+
+    let currentPoints =
+      parseInt(
+        localStorage.getItem("demoPoints") || "0"
+      );
+
+
+    currentPoints =
+      currentPoints + reward;
+
+
+    localStorage.setItem(
+      "demoPoints",
+      currentPoints
+    );
+
+
+    prediction.reward =
+      reward;
+
+    prediction.rewardAdded =
+      true;
+
+
+    localStorage.setItem(
+      "predictionHistory",
+      JSON.stringify(history)
+    );
+
+
+    let username =
+      localStorage.getItem("demoUsername") ||
+      "Unknown User";
+
+
+    let winner = {
+
+      username: username,
+
+      round: prediction.round,
+
+      number: prediction.number,
+
+      reward: reward,
+
+      time: new Date().toLocaleString()
+
+    };
+
+
+    localStorage.setItem(
+      "recentWinner",
+      JSON.stringify(winner)
+    );
+
+
+    alert(
+      "🏆 Winner reward added: +" +
+      reward +
+      " Virtual Coins"
+    );
+
+
+    loadAdminData();
+
+  }
+
+
+  /* SHOW RECENT WINNER */
+
+  function showRecentWinner() {
+
+    let winner =
+      JSON.parse(
+        localStorage.getItem("recentWinner") || "null"
+      );
+
+
+    let winnerBox =
+      document.getElementById("winnerInfo");
+
+
+    if (!winner) {
+
+      winnerBox.innerText =
+        "No winner published yet.";
+
+      return;
+
+    }
+
+
+    winnerBox.innerHTML =
+
+      "🏆 <b>Winner:</b> " +
+      escapeHTML(winner.username) +
+
+      "<br>🎯 <b>Round:</b> " +
+      escapeHTML(winner.round) +
+
+      "<br>🔢 <b>Number:</b> " +
+      escapeHTML(winner.number) +
+
+      "<br>🪙 <b>Reward:</b> +" +
+      winner.reward +
+      " Virtual Coins" +
+
+      "<br>🕐 <b>Time:</b> " +
+      escapeHTML(winner.time);
+
+  }
+
+
+  /* LOGOUT */
+
+  function adminLogout() {
+
+    document.getElementById("adminDashboard")
+      .classList.add("hidden");
+
+    document.getElementById("adminLogin")
+      .classList.remove("hidden");
+
+    document.getElementById("adminUser")
+      .value = "";
+
+    document.getElementById("adminPass")
+      .value = "";
+
+  }
+
+</script>
+
+</body>
+</html>
