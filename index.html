@@ -1,0 +1,1491 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Dear King</title>
+
+  <style>
+    * {
+      box-sizing: border-box;
+    }
+
+    body {
+      margin: 0;
+      font-family: Arial, sans-serif;
+      background: #eef2ff;
+      min-height: 100vh;
+    }
+
+    .box {
+      width: 92%;
+      max-width: 390px;
+      margin: 30px auto;
+      background: white;
+      padding: 28px 22px;
+      border-radius: 22px;
+      box-shadow: 0 8px 30px rgba(0,0,0,0.12);
+    }
+
+    .logo {
+      width: 130px;
+      height: 130px;
+      margin: 0 auto 20px;
+      background: linear-gradient(145deg, #2563eb, #111827);
+      border: 4px solid #facc15;
+      border-radius: 30px;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      box-shadow: 0 0 25px rgba(37, 99, 235, 0.6);
+    }
+
+    .logo span {
+      font-size: 35px;
+    }
+
+    .logo b {
+      font-size: 45px;
+      font-weight: bold;
+      color: #facc15;
+      letter-spacing: 3px;
+    }
+
+    h1 {
+      text-align: center;
+      margin-bottom: 5px;
+    }
+
+    .subtitle {
+      text-align: center;
+      color: #6b7280;
+      font-size: 14px;
+      margin-bottom: 25px;
+    }
+
+    .tabs {
+      display: flex;
+      background: #f1f5f9;
+      border-radius: 12px;
+      padding: 4px;
+      margin-bottom: 20px;
+    }
+
+    .tab {
+      width: 50%;
+      padding: 11px;
+      border: none;
+      background: transparent;
+      border-radius: 9px;
+      font-weight: bold;
+      cursor: pointer;
+    }
+
+    .tab.active {
+      background: white;
+      color: #2563eb;
+      box-shadow: 0 2px 7px rgba(0,0,0,0.08);
+    }
+
+    label {
+      display: block;
+      font-size: 14px;
+      font-weight: bold;
+      margin: 13px 0 7px;
+    }
+
+    input {
+      width: 100%;
+      padding: 14px;
+      border: 1px solid #d1d5db;
+      border-radius: 11px;
+      font-size: 18px;
+      outline: none;
+      text-align: center;
+    }
+
+    input:focus {
+      border-color: #2563eb;
+    }
+
+    .main-btn {
+      width: 100%;
+      padding: 14px;
+      margin-top: 20px;
+      border: none;
+      border-radius: 11px;
+      background: #2563eb;
+      color: white;
+      font-size: 16px;
+      font-weight: bold;
+      cursor: pointer;
+    }
+
+    .message {
+      text-align: center;
+      margin-top: 15px;
+      font-size: 14px;
+      font-weight: bold;
+    }
+
+    .demo {
+      margin-top: 20px;
+      padding: 12px;
+      background: #f8fafc;
+      border-radius: 10px;
+      text-align: center;
+      font-size: 12px;
+      color: #64748b;
+    }
+
+    .hidden {
+      display: none;
+    }
+
+    /* DASHBOARD */
+
+    .dashboard {
+      width: 94%;
+      max-width: 600px;
+      margin: 20px auto;
+    }
+
+    .topbar {
+      background: #111827;
+      color: white;
+      padding: 18px;
+      border-radius: 18px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 15px;
+    }
+
+    .topbar-title {
+      font-size: 21px;
+      font-weight: bold;
+    }
+
+    .logout-btn {
+      border: none;
+      background: #ef4444;
+      color: white;
+      padding: 9px 13px;
+      border-radius: 9px;
+      font-weight: bold;
+    }
+
+    .welcome {
+      background: white;
+      padding: 20px;
+      border-radius: 18px;
+      box-shadow: 0 5px 20px rgba(0,0,0,0.08);
+      margin-bottom: 15px;
+    }
+
+    .welcome h2 {
+      margin: 0 0 6px;
+    }
+
+    .points-card {
+      background: linear-gradient(135deg, #2563eb, #1e40af);
+      color: white;
+      padding: 22px;
+      border-radius: 18px;
+      margin-bottom: 15px;
+      box-shadow: 0 8px 20px rgba(37,99,235,0.25);
+    }
+
+    .points-label {
+      font-size: 14px;
+      opacity: 0.9;
+    }
+
+    .points {
+      font-size: 36px;
+      font-weight: bold;
+      margin-top: 5px;
+    }
+
+    .section {
+      background: white;
+      padding: 20px;
+      border-radius: 18px;
+      box-shadow: 0 5px 20px rgba(0,0,0,0.08);
+      margin-bottom: 15px;
+    }
+
+    .section h3 {
+      margin-top: 0;
+    }
+
+    .rounds {
+      display: flex;
+      gap: 10px;
+      margin-bottom: 15px;
+    }
+
+    .round {
+      flex: 1;
+      padding: 13px;
+      border: 2px solid #e5e7eb;
+      border-radius: 12px;
+      text-align: center;
+      cursor: pointer;
+      font-weight: bold;
+    }
+
+    .round.active {
+      border-color: #2563eb;
+      background: #eff6ff;
+      color: #2563eb;
+    }
+
+    .number-input {
+      font-size: 24px;
+      font-weight: bold;
+      letter-spacing: 4px;
+    }
+
+    .cost {
+      text-align: center;
+      margin-top: 12px;
+      color: #64748b;
+      font-size: 14px;
+    }
+
+    .predict-btn {
+      width: 100%;
+      padding: 14px;
+      margin-top: 16px;
+      border: none;
+      border-radius: 11px;
+      background: #16a34a;
+      color: white;
+      font-size: 16px;
+      font-weight: bold;
+    }
+
+    .predict-btn:disabled {
+      background: #9ca3af;
+    }
+
+    .menu {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 12px;
+    }
+
+    .menu-btn {
+      padding: 18px 10px;
+      border: none;
+      border-radius: 14px;
+      background: #f1f5f9;
+      font-weight: bold;
+      font-size: 15px;
+    }
+
+    .history-item {
+      padding: 12px;
+      border-bottom: 1px solid #e5e7eb;
+      font-size: 14px;
+    }
+
+    .history-item:last-child {
+      border-bottom: none;
+    }
+
+    .account-info {
+      line-height: 1.8;
+    }
+
+    /* RECENT WINNER */
+
+    .winner-box {
+      background: #fef3c7;
+      border: 1px solid #f59e0b;
+      padding: 16px;
+      border-radius: 13px;
+      line-height: 1.8;
+    }
+
+    .no-winner {
+      background: #f8fafc;
+      padding: 15px;
+      border-radius: 12px;
+      color: #64748b;
+      text-align: center;
+    }
+
+    .winner-title {
+      font-size: 18px;
+      font-weight: bold;
+      margin-bottom: 8px;
+      color: #92400e;
+    }
+
+  </style>
+</head>
+
+<body>
+
+
+<!-- LOGIN PAGE -->
+
+<div class="box" id="loginPage">
+
+  <div class="logo">
+    <span>👑</span>
+    <b>DK</b>
+  </div>
+
+  <h1>Dear King</h1>
+
+  <div class="subtitle">
+    Welcome to the Prediction Challenge
+  </div>
+
+  <div class="tabs">
+
+    <button
+      class="tab active"
+      id="loginTab"
+      onclick="showLogin()">
+      Login
+    </button>
+
+    <button
+      class="tab"
+      id="registerTab"
+      onclick="showRegister()">
+      Register
+    </button>
+
+  </div>
+
+
+  <!-- LOGIN -->
+
+  <div id="loginBox">
+
+    <label>Username</label>
+
+    <input
+      type="text"
+      id="loginUser"
+      placeholder="Enter username"
+    >
+
+    <label>Password</label>
+
+    <input
+      type="password"
+      id="loginPass"
+      placeholder="Enter password"
+    >
+
+    <button
+      class="main-btn"
+      onclick="login()">
+      Login
+    </button>
+
+    <div
+      id="loginMessage"
+      class="message">
+    </div>
+
+  </div>
+
+
+  <!-- REGISTER -->
+
+  <div id="registerBox" class="hidden">
+
+    <label>Username</label>
+
+    <input
+      type="text"
+      id="regUser"
+      placeholder="Choose username"
+    >
+
+    <label>Password</label>
+
+    <input
+      type="password"
+      id="regPass"
+      placeholder="Create password"
+    >
+
+    <label>Confirm Password</label>
+
+    <input
+      type="password"
+      id="regConfirm"
+      placeholder="Confirm password"
+    >
+
+    <button
+      class="main-btn"
+      onclick="register()">
+      Create Account
+    </button>
+
+    <div
+      id="registerMessage"
+      class="message">
+    </div>
+
+  </div>
+
+
+  <div class="demo">
+    Free-to-play demo • Virtual points only
+  </div>
+
+</div>
+
+
+
+<!-- DASHBOARD -->
+
+<div
+  class="dashboard hidden"
+  id="dashboardPage">
+
+
+  <!-- TOP BAR -->
+
+  <div class="topbar">
+
+    <div class="topbar-title">
+      👑 Dear King
+    </div>
+
+    <button
+      class="logout-btn"
+      onclick="logout()">
+      Logout
+    </button>
+
+  </div>
+
+
+  <!-- WELCOME -->
+
+  <div class="welcome">
+
+    <h2>
+      Welcome,
+      <span id="welcomeUser"></span>
+      👑
+    </h2>
+
+    <div>
+      Ready for today's prediction?
+    </div>
+
+  </div>
+
+
+  <!-- VIRTUAL COINS -->
+
+  <div class="points-card">
+
+    <div class="points-label">
+      Your Virtual Coins
+    </div>
+
+    <div
+      class="points"
+      id="pointsDisplay">
+      100
+    </div>
+
+  </div>
+
+
+
+  <!-- RECENT WINNER -->
+
+  <div class="section">
+
+    <h3>🏆 Recent Winner</h3>
+
+    <div
+      id="recentWinnerBox"
+      class="no-winner">
+
+      No winner published yet.
+
+    </div>
+
+  </div>
+
+
+
+  <!-- PREDICTION -->
+
+  <div class="section">
+
+    <h3>
+      🎯 Make Your Prediction
+    </h3>
+
+    <p>Select Round</p>
+
+    <div class="rounds">
+
+      <div
+        class="round active"
+        id="round1"
+        onclick="selectRound('1 PM')">
+
+        1:00 PM
+
+      </div>
+
+
+      <div
+        class="round"
+        id="round2"
+        onclick="selectRound('8 PM')">
+
+        8:00 PM
+
+      </div>
+
+    </div>
+
+
+    <label>
+      Enter Prediction Number
+    </label>
+
+    <input
+      type="text"
+      id="predictionNumber"
+      class="number-input"
+      placeholder="01 - 99"
+      maxlength="2"
+      inputmode="numeric"
+      oninput="validateNumberInput(this)"
+    >
+
+
+    <div class="cost">
+
+      🪙 Participation Cost:
+      <b>10 Virtual Coins</b>
+
+    </div>
+
+
+    <button
+      class="predict-btn"
+      id="submitBtn"
+      onclick="makePrediction()">
+
+      Submit Prediction
+
+    </button>
+
+
+    <div
+      id="predictionMessage"
+      class="message">
+    </div>
+
+  </div>
+
+
+
+  <!-- MENU -->
+
+  <div class="section">
+
+    <h3>📱 Menu</h3>
+
+    <div class="menu">
+
+      <button
+        class="menu-btn"
+        onclick="showHistory()">
+
+        📋 History
+
+      </button>
+
+
+      <button
+        class="menu-btn"
+        onclick="showAccount()">
+
+        👤 Account
+
+      </button>
+
+    </div>
+
+  </div>
+
+
+
+  <!-- HISTORY -->
+
+  <div
+    class="section hidden"
+    id="historySection">
+
+    <h3>
+      📋 Prediction History
+    </h3>
+
+    <div id="historyList">
+      No predictions yet.
+    </div>
+
+  </div>
+
+
+
+  <!-- ACCOUNT -->
+
+  <div
+    class="section hidden"
+    id="accountSection">
+
+    <h3>
+      👤 Account
+    </h3>
+
+    <div class="account-info">
+
+      <b>Username:</b>
+
+      <span id="accountUser"></span>
+
+      <br>
+
+      <b>Virtual Coins:</b>
+
+      <span id="accountPoints"></span>
+
+    </div>
+
+  </div>
+
+
+  <div class="demo">
+    Free-to-play demo • Virtual points only
+  </div>
+
+</div>
+
+
+
+<script>
+
+  const PARTICIPATION_COST = 10;
+
+  let selectedRound = "1 PM";
+
+
+
+  /* LOGIN / REGISTER TABS */
+
+  function showLogin() {
+
+    document
+      .getElementById("loginBox")
+      .classList.remove("hidden");
+
+    document
+      .getElementById("registerBox")
+      .classList.add("hidden");
+
+    document
+      .getElementById("loginTab")
+      .classList.add("active");
+
+    document
+      .getElementById("registerTab")
+      .classList.remove("active");
+
+  }
+
+
+  function showRegister() {
+
+    document
+      .getElementById("loginBox")
+      .classList.add("hidden");
+
+    document
+      .getElementById("registerBox")
+      .classList.remove("hidden");
+
+    document
+      .getElementById("loginTab")
+      .classList.remove("active");
+
+    document
+      .getElementById("registerTab")
+      .classList.add("active");
+
+  }
+
+
+
+  /* REGISTER */
+
+  function register() {
+
+    let username =
+      document
+        .getElementById("regUser")
+        .value
+        .trim();
+
+    let password =
+      document
+        .getElementById("regPass")
+        .value;
+
+    let confirm =
+      document
+        .getElementById("regConfirm")
+        .value;
+
+    let message =
+      document
+        .getElementById("registerMessage");
+
+
+    if (
+      username === "" ||
+      password === ""
+    ) {
+
+      message.innerText =
+        "Please fill all fields.";
+
+      message.style.color = "red";
+
+      return;
+
+    }
+
+
+    if (password !== confirm) {
+
+      message.innerText =
+        "Passwords do not match.";
+
+      message.style.color = "red";
+
+      return;
+
+    }
+
+
+    localStorage.setItem(
+      "demoUsername",
+      username
+    );
+
+
+    localStorage.setItem(
+      "demoPassword",
+      password
+    );
+
+
+    localStorage.setItem(
+      "demoPoints",
+      "100"
+    );
+
+
+    localStorage.setItem(
+      "predictionHistory",
+      JSON.stringify([])
+    );
+
+
+    message.innerText =
+      "Account created successfully!";
+
+    message.style.color = "green";
+
+
+    setTimeout(function() {
+
+      showLogin();
+
+    }, 800);
+
+  }
+
+
+
+  /* LOGIN */
+
+  function login() {
+
+    let username =
+      document
+        .getElementById("loginUser")
+        .value
+        .trim();
+
+    let password =
+      document
+        .getElementById("loginPass")
+        .value;
+
+
+    let savedUser =
+      localStorage.getItem("demoUsername");
+
+
+    let savedPass =
+      localStorage.getItem("demoPassword");
+
+
+    let message =
+      document
+        .getElementById("loginMessage");
+
+
+    if (
+      username === savedUser &&
+      password === savedPass
+    ) {
+
+      message.innerText =
+        "Login successful!";
+
+      message.style.color = "green";
+
+
+      setTimeout(function() {
+
+        openDashboard(username);
+
+      }, 500);
+
+    }
+
+    else {
+
+      message.innerText =
+        "Username or password incorrect.";
+
+      message.style.color = "red";
+
+    }
+
+  }
+
+
+
+  /* OPEN DASHBOARD */
+
+  function openDashboard(username) {
+
+    document
+      .getElementById("loginPage")
+      .classList.add("hidden");
+
+
+    document
+      .getElementById("dashboardPage")
+      .classList.remove("hidden");
+
+
+    document
+      .getElementById("welcomeUser")
+      .innerText = username;
+
+
+    document
+      .getElementById("accountUser")
+      .innerText = username;
+
+
+    updatePoints();
+
+    showRecentWinner();
+
+    checkRoundStatus();
+
+  }
+
+
+
+  /* UPDATE COINS */
+
+  function updatePoints() {
+
+    let points =
+      parseInt(
+        localStorage.getItem("demoPoints") || "100"
+      );
+
+
+    document
+      .getElementById("pointsDisplay")
+      .innerText = points;
+
+
+    document
+      .getElementById("accountPoints")
+      .innerText = points;
+
+  }
+
+
+
+  /* SELECT ROUND */
+
+  function selectRound(round) {
+
+    selectedRound = round;
+
+
+    document
+      .getElementById("round1")
+      .classList.remove("active");
+
+
+    document
+      .getElementById("round2")
+      .classList.remove("active");
+
+
+    if (round === "1 PM") {
+
+      document
+        .getElementById("round1")
+        .classList.add("active");
+
+    }
+
+    else {
+
+      document
+        .getElementById("round2")
+        .classList.add("active");
+
+    }
+
+
+    document
+      .getElementById("predictionNumber")
+      .value = "";
+
+
+    document
+      .getElementById("predictionMessage")
+      .innerText = "";
+
+
+    checkRoundStatus();
+
+  }
+
+
+
+  /* NUMBER VALIDATION */
+
+  function validateNumberInput(input) {
+
+    input.value =
+      input.value.replace(
+        /[^0-9]/g,
+        ""
+      );
+
+  }
+
+
+
+  /* TODAY KEY */
+
+  function getTodayKey() {
+
+    let date = new Date();
+
+
+    return date.getFullYear() +
+      "-" +
+      (date.getMonth() + 1) +
+      "-" +
+      date.getDate();
+
+  }
+
+
+
+  /* CHECK PARTICIPATION */
+
+  function hasParticipated(round) {
+
+    let history =
+      JSON.parse(
+        localStorage.getItem(
+          "predictionHistory"
+        ) || "[]"
+      );
+
+
+    let today =
+      getTodayKey();
+
+
+    return history.some(function(item) {
+
+      return (
+        item.dateKey === today &&
+        item.round === round
+      );
+
+    });
+
+  }
+
+
+
+  /* ROUND STATUS */
+
+  function checkRoundStatus() {
+
+    let input =
+      document
+        .getElementById(
+          "predictionNumber"
+        );
+
+
+    let button =
+      document
+        .getElementById(
+          "submitBtn"
+        );
+
+
+    let message =
+      document
+        .getElementById(
+          "predictionMessage"
+        );
+
+
+    if (
+      hasParticipated(
+        selectedRound
+      )
+    ) {
+
+      input.disabled = true;
+
+      button.disabled = true;
+
+
+      message.innerText =
+        "You already participated in this round today.";
+
+      message.style.color =
+        "#dc2626";
+
+    }
+
+    else {
+
+      input.disabled = false;
+
+      button.disabled = false;
+
+      message.innerText = "";
+
+    }
+
+  }
+
+
+
+  /* MAKE PREDICTION */
+
+  function makePrediction() {
+
+    let message =
+      document
+        .getElementById(
+          "predictionMessage"
+        );
+
+
+    if (
+      hasParticipated(
+        selectedRound
+      )
+    ) {
+
+      message.innerText =
+        "You already participated in this round today.";
+
+      message.style.color =
+        "red";
+
+      return;
+
+    }
+
+
+    let input =
+      document
+        .getElementById(
+          "predictionNumber"
+        );
+
+
+    let number =
+      input.value.trim();
+
+
+    if (
+      !/^[0-9]{2}$/.test(number)
+    ) {
+
+      message.innerText =
+        "Please enter a number from 01 to 99.";
+
+      message.style.color =
+        "red";
+
+      return;
+
+    }
+
+
+    let numberValue =
+      parseInt(number);
+
+
+    if (
+      numberValue < 1 ||
+      numberValue > 99
+    ) {
+
+      message.innerText =
+        "Number must be between 01 and 99.";
+
+      message.style.color =
+        "red";
+
+      return;
+
+    }
+
+
+    let points =
+      parseInt(
+        localStorage.getItem(
+          "demoPoints"
+        ) || "100"
+      );
+
+
+    if (
+      points < PARTICIPATION_COST
+    ) {
+
+      message.innerText =
+        "Not enough virtual coins.";
+
+      message.style.color =
+        "red";
+
+      return;
+
+    }
+
+
+    let history =
+      JSON.parse(
+        localStorage.getItem(
+          "predictionHistory"
+        ) || "[]"
+      );
+
+
+    points =
+      points -
+      PARTICIPATION_COST;
+
+
+    localStorage.setItem(
+      "demoPoints",
+      points.toString()
+    );
+
+
+    let prediction = {
+
+      round: selectedRound,
+
+      number: number,
+
+      time:
+        new Date()
+          .toLocaleString(),
+
+      dateKey:
+        getTodayKey(),
+
+      coinSpent:
+        PARTICIPATION_COST,
+
+      status:
+        "Pending"
+
+    };
+
+
+    history.push(prediction);
+
+
+    localStorage.setItem(
+      "predictionHistory",
+      JSON.stringify(history)
+    );
+
+
+    message.innerText =
+      "Prediction submitted! 10 coins deducted.";
+
+    message.style.color =
+      "green";
+
+
+    input.value = "";
+
+
+    updatePoints();
+
+    showHistory();
+
+    checkRoundStatus();
+
+  }
+
+
+
+  /* HISTORY */
+
+  function showHistory() {
+
+    let section =
+      document
+        .getElementById(
+          "historySection"
+        );
+
+
+    section
+      .classList
+      .remove("hidden");
+
+
+    let history =
+      JSON.parse(
+        localStorage.getItem(
+          "predictionHistory"
+        ) || "[]"
+      );
+
+
+    let list =
+      document
+        .getElementById(
+          "historyList"
+        );
+
+
+    if (
+      history.length === 0
+    ) {
+
+      list.innerText =
+        "No predictions yet.";
+
+      return;
+
+    }
+
+
+    list.innerHTML = "";
+
+
+    history
+      .slice()
+      .reverse()
+      .forEach(function(item) {
+
+        let div =
+          document.createElement(
+            "div"
+          );
+
+
+        div.className =
+          "history-item";
+
+
+        div.innerHTML =
+
+          "🕐 " +
+          item.time +
+
+          "<br>🎯 Round: " +
+          item.round +
+
+          "<br>🔢 Number: " +
+          item.number +
+
+          "<br>🪙 Coins Spent: " +
+          item.coinSpent +
+
+          "<br>📌 Status: " +
+          item.status;
+
+
+        list.appendChild(div);
+
+      });
+
+  }
+
+
+
+  /* ACCOUNT */
+
+  function showAccount() {
+
+    document
+      .getElementById(
+        "accountSection"
+      )
+      .classList
+      .remove("hidden");
+
+
+    updatePoints();
+
+  }
+
+
+
+  /* RECENT WINNER */
+
+  function showRecentWinner() {
+
+    let winner =
+      JSON.parse(
+        localStorage.getItem(
+          "recentWinner"
+        ) || "null"
+      );
+
+
+    let box =
+      document
+        .getElementById(
+          "recentWinnerBox"
+        );
+
+
+    if (!winner) {
+
+      box.className =
+        "no-winner";
+
+      box.innerText =
+        "No winner published yet.";
+
+      return;
+
+    }
+
+
+    box.className =
+      "winner-box";
+
+
+    box.innerHTML =
+
+      '<div class="winner-title">' +
+      '🏆 Winner Announcement' +
+      '</div>' +
+
+      "👤 <b>Username:</b> " +
+      winner.username +
+
+      "<br>🎯 <b>Round:</b> " +
+      winner.round +
+
+      "<br>🔢 <b>Number:</b> " +
+      winner.number +
+
+      "<br>🪙 <b>Reward:</b> +" +
+      winner.reward +
+      " Virtual Coins" +
+
+      "<br>🕐 <b>Time:</b> " +
+      winner.time;
+
+  }
+
+
+
+  /* LOGOUT */
+
+  function logout() {
+
+    document
+      .getElementById(
+        "dashboardPage"
+      )
+      .classList
+      .add("hidden");
+
+
+    document
+      .getElementById(
+        "loginPage"
+      )
+      .classList
+      .remove("hidden");
+
+
+    document
+      .getElementById(
+        "loginUser"
+      )
+      .value = "";
+
+
+    document
+      .getElementById(
+        "loginPass"
+      )
+      .value = "";
+
+  }
+
+</script>
+
+</body>
+</html>
